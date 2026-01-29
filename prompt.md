@@ -81,3 +81,77 @@ to-do list 아래에 캘린더를 작은 크기로 넣어주고 날짜를 클릭
 - 클릭 시 부드러운 슬라이드 애니메이션으로 펼쳐짐
 -  닫기 버튼으로 다시 숨길 수 있음
 - UI 일관성 및 공간 활용도 개선
+
+---
+
+## 5. Google Apps Script로 웹 앱 배포
+**목표:** HTML/CSS/JavaScript로 만든 시간표를 Google Apps Script를 통해 웹 앱으로 배포
+
+**프롬프트:**
+
+너는 웹 개발자야. 다음 HTML/CSS/JavaScript 코드를 Google Apps Script로 변환하고 싶어.
+
+[코드 전문]
+아래는 현재 작동하는 시간표 웹페이지의 index.html, style.css, script.js 파일이야:
+
+### index.html
+(index.html 전체 코드 붙여넣기)
+
+### style.css
+(style.css 전체 코드 붙여넣기)
+
+### script.js
+(script.js 전체 코드 붙여넣기)
+
+[요구사항]
+이 코드를 Google Apps Script로 변환해줘. 다음 사항을 고려해줘:
+
+1. HTML, CSS, JavaScript를 하나의 .gs 파일로 통합
+2. doGet() 함수를 메인 진입점으로 사용
+3. HtmlService를 사용해서 HTML 컨텐츠 제공
+4. 외부 라이브러리는 사용하지 않기 (Vanilla JavaScript만 사용)
+5. 데이터는 sessionStorage 사용 (또는 Google Sheets와 연동하기)
+6. 모든 스타일과 기능은 유지하기
+
+[변환 방법]
+- doGet() 함수: 웹 앱의 진입점
+- getHtmlContent() 함수: HTML 전체를 템플릿 리터럴로 반환
+- CSS: <style> 태그에 그대로 포함
+- JavaScript: <script> 태그에 그대로 포함
+
+[배포 가이드]
+변환 후 다음 과정을 설명해줘:
+1. Google Apps Script 프로젝트 생성 방법
+2. 코드 붙여넣는 방법
+3. 배포 설정 방법
+4. 웹 앱 URL 얻는 방법
+
+[예상 결과]
+변환된 GoogleAppsScript.gs 파일과 배포 가이드 문서를 만들어줘.
+
+**결과:**
+- GoogleAppsScript.gs: 완전히 작동하는 웹 앱 코드
+- 모든 기능 유지: 시간표, TO-DO, 캘린더, 백업/복원
+- sessionStorage를 사용한 데이터 관리
+- Google Apps Script 배포 가이드 문서
+- 단계별 배포 방법 설명
+
+---
+
+## 이 프롬프트를 Gemini에서 사용하는 방법:
+
+1. [Google Gemini](https://gemini.google.com) 접속
+2. 위의 **프롬프트**를 복사
+3. [코드 전문] 부분에 다음 파일들의 전체 코드 붙여넣기:
+   - index.html
+   - style.css
+   - script.js
+4. 프롬프트 제출
+5. Gemini가 생성한 GoogleAppsScript.gs 코드 복사
+6. [Google Apps Script](https://script.google.com)에 붙여넣기
+7. 배포 진행
+
+**주의사항:**
+- 프롬프트는 한국어로 작성되어 있으니, 영어로 변환해서 사용해도 됩니다
+- Gemini가 생성한 코드는 검토 후 테스트 권장
+- sessionStorage vs Google Sheets 저장소는 필요에 따라 선택 가능
