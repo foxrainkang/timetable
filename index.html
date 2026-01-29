@@ -16,15 +16,12 @@
             <div class="backup-section">
                 <button type="button" id="exportBtn" class="btn-backup">💾 JSON으로 백업</button>
                 <button type="button" id="importBtn" class="btn-backup">📂 파일에서 복원</button>
+                <button type="button" id="toggleLectureFormBtn" class="btn-backup">➕ 강의 추가</button>
                 <input type="file" id="importFile" style="display:none;" accept=".json">
             </div>
             
             <!-- 강의 입력 폼 -->
-            <div class="form-section" id="lectureFormSection">
-                <div class="form-header">
-                    <h3>강의 추가하기</h3>
-                    <button type="button" id="toggleLectureFormBtn" class="toggle-form-btn">접기</button>
-                </div>
+            <div class="form-section" id="lectureFormSection" style="display:none;">
                 <div class="form-body">
                 <form id="lectureForm">
                     <div class="form-row">

@@ -187,8 +187,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const lectureFormSection = document.getElementById('lectureFormSection');
     if (toggleLectureFormBtn && lectureFormSection) {
         toggleLectureFormBtn.addEventListener('click', () => {
-            const isCollapsed = lectureFormSection.classList.toggle('collapsed');
-            toggleLectureFormBtn.textContent = isCollapsed ? '펼치기' : '접기';
+            const isHidden = lectureFormSection.style.display === 'none';
+            lectureFormSection.style.display = isHidden ? 'block' : 'none';
+            toggleLectureFormBtn.textContent = isHidden ? '✖️ 닫기' : '➕ 강의 추가';
         });
     }
 
