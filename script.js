@@ -391,6 +391,74 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCalendar();
     renderWeeklySchedules();
 
+    // ===== JSON 백업/복원 기능 =====
+    const exportBtn = document.getElementById('exportBtn');
+    const importBtn = document.getElementById('importBtn');
+    const importFile = document.getElementById('importFile');
+
+    // JSON으로 내보내기
+    if (exportBtn) {
+        exportBtn.addEventListener('click', function() {
+            const data = {
+                lectures: JSON.parse(localStorage.getItem('lectures')) || [],
+                todos: JSON.parse(localStorage.getItem('todos')) || [],
+                schedules: JSON.parse(localStorage.getItem('schedules')) || {},
+                exportDate: new Date().toLocaleString('ko-KR')
+            };
+
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `시간표_백업_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert('✅ 시간표가 JSON 파일로 다운로드되었습니다!');
+        });
+    }
+
+    // 파일에서 복원하기
+    if (importBtn) {
+        importBtn.addEventListener('click', function() {
+            importFile.click();
+        });
+    }
+
+    if (importFile) {
+        importFile.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+
+                    if (!data.lectures || !data.todos || !data.schedules) {
+                        alert('❌ 올바른 시간표 백업 파일이 아닙니다!');
+                        return;
+                    }
+
+                    if (confirm('⚠️ 기존 데이터를 모두 덮어쓰시겠습니까?\n(되돌릴 수 없습니다)')) {
+                        localStorage.setItem('lectures', JSON.stringify(data.lectures));
+                        localStorage.setItem('todos', JSON.stringify(data.todos));
+                        localStorage.setItem('schedules', JSON.stringify(data.schedules));
+
+                        // 페이지 새로고침
+                        location.reload();
+                    }
+                } catch (error) {
+                    alert('❌ 파일을 읽을 수 없습니다. 올바른 JSON 파일인지 확인하세요.');
+                }
+            };
+            reader.readAsText(file);
+        });
+    }
+
 });
 
 

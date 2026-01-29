@@ -12,6 +12,13 @@
         <div class="main-section">
             <h2 class="section-title">📚 나의 시간표</h2>
             
+            <!-- 백업/내보내기 버튼 -->
+            <div class="backup-section">
+                <button type="button" id="exportBtn" class="btn-backup">💾 JSON으로 백업</button>
+                <button type="button" id="importBtn" class="btn-backup">📂 파일에서 복원</button>
+                <input type="file" id="importFile" style="display:none;" accept=".json">
+            </div>
+            
             <!-- 강의 입력 폼 -->
             <div class="form-section" id="lectureFormSection">
                 <div class="form-header">

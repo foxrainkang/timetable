@@ -47,6 +47,36 @@ body {
     padding-bottom: 10px;
 }
 
+/* ===== 백업 섹션 ===== */
+.backup-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-backup {
+    padding: 10px 16px;
+    background-color: var(--green-dark);
+    color: var(--text-light);
+    border: 1px solid var(--green-accent);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-backup:hover {
+    background-color: var(--green-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 122, 63, 0.3);
+}
+
+.btn-backup:active {
+    transform: translateY(0);
+}
+
 /* ===== 입력 폼 ===== */
 .form-section {
     background: var(--navy);
