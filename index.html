@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대학생 시간표</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 시간표 및 TO-DO 섹션 -->
+        <div class="main-section">
+            <h2 class="section-title">📚 나의 시간표</h2>
+            
+            <!-- 강의 입력 폼 -->
+            <div class="form-section" id="lectureFormSection">
+                <div class="form-header">
+                    <h3>강의 추가하기</h3>
+                    <button type="button" id="toggleLectureFormBtn" class="toggle-form-btn">접기</button>
+                </div>
+                <div class="form-body">
+                <form id="lectureForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lectureName">강의명</label>
+                            <input type="text" id="lectureName" placeholder="예: 웹 개발 기초" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lectureRoom">강의실</label>
+                            <input type="text" id="lectureRoom" placeholder="예: 공학관 101호" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lectureDay">요일</label>
+                            <select id="lectureDay" required>
+                                <option value="">선택하기</option>
+                                <option value="월">월</option>
+                                <option value="화">화</option>
+                                <option value="수">수</option>
+                                <option value="목">목</option>
+                                <option value="금">금</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lectureTime">시간</label>
+                            <select id="lectureTime" required>
+                                <option value="">선택하기</option>
+                                <option value="09:00">1교시 (09:00)</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">2교시 (10:00)</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">3교시 (11:00)</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">4교시 (12:00)</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">5교시 (13:00)</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">6교시 (14:00)</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">7교시 (15:00)</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">8교시 (16:00)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lectureDuration">수업시간</label>
+                            <select id="lectureDuration" required>
+                                <option value="">선택하기</option>
+                                <option value="30">30분</option>
+                                <option value="60">1시간</option>
+                                <option value="90">1시간 30분</option>
+                                <option value="120">2시간</option>
+                                <option value="150">2시간 30분</option>
+                                <option value="180">3시간</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-add">+ 강의 추가</button>
+                </form>
+                </div>
+            </div>
+
+            <!-- 시간표 -->
+            <div class="timetable-wrapper">
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th class="time-col">시간</th>
+                            <th>월</th>
+                            <th>화</th>
+                            <th>수</th>
+                            <th>목</th>
+                            <th>금</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-time="09:00">
+                            <td class="time-cell">1교시<br>09:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="09:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="09:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="09:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="09:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="09:00"></td>
+                        </tr>
+                        <tr data-time="09:30">
+                            <td class="time-cell">09:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="09:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="09:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="09:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="09:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="09:30"></td>
+                        </tr>
+                        <tr data-time="10:00">
+                            <td class="time-cell">2교시<br>10:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="10:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="10:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="10:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="10:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="10:00"></td>
+                        </tr>
+                        <tr data-time="10:30">
+                            <td class="time-cell">10:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="10:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="10:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="10:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="10:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="10:30"></td>
+                        </tr>
+                        <tr data-time="11:00">
+                            <td class="time-cell">3교시<br>11:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="11:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="11:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="11:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="11:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="11:00"></td>
+                        </tr>
+                        <tr data-time="11:30">
+                            <td class="time-cell">11:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="11:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="11:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="11:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="11:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="11:30"></td>
+                        </tr>
+                        <tr data-time="12:00">
+                            <td class="time-cell">4교시<br>12:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="12:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="12:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="12:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="12:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="12:00"></td>
+                        </tr>
+                        <tr data-time="12:30">
+                            <td class="time-cell">12:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="12:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="12:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="12:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="12:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="12:30"></td>
+                        </tr>
+                        <tr data-time="13:00">
+                            <td class="time-cell">5교시<br>13:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="13:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="13:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="13:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="13:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="13:00"></td>
+                        </tr>
+                        <tr data-time="13:30">
+                            <td class="time-cell">13:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="13:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="13:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="13:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="13:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="13:30"></td>
+                        </tr>
+                        <tr data-time="14:00">
+                            <td class="time-cell">6교시<br>14:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="14:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="14:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="14:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="14:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="14:00"></td>
+                        </tr>
+                        <tr data-time="14:30">
+                            <td class="time-cell">14:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="14:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="14:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="14:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="14:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="14:30"></td>
+                        </tr>
+                        <tr data-time="15:00">
+                            <td class="time-cell">7교시<br>15:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="15:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="15:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="15:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="15:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="15:00"></td>
+                        </tr>
+                        <tr data-time="15:30">
+                            <td class="time-cell">15:30</td>
+                            <td class="lecture-cell" data-day="월" data-time="15:30"></td>
+                            <td class="lecture-cell" data-day="화" data-time="15:30"></td>
+                            <td class="lecture-cell" data-day="수" data-time="15:30"></td>
+                            <td class="lecture-cell" data-day="목" data-time="15:30"></td>
+                            <td class="lecture-cell" data-day="금" data-time="15:30"></td>
+                        </tr>
+                        <tr data-time="16:00">
+                            <td class="time-cell">8교시<br>16:00</td>
+                            <td class="lecture-cell" data-day="월" data-time="16:00"></td>
+                            <td class="lecture-cell" data-day="화" data-time="16:00"></td>
+                            <td class="lecture-cell" data-day="수" data-time="16:00"></td>
+                            <td class="lecture-cell" data-day="목" data-time="16:00"></td>
+                            <td class="lecture-cell" data-day="금" data-time="16:00"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TO-DO LIST 섹션 -->
+        <div class="todo-section">
+            <h2 class="section-title">✅ Today's To-Do List</h2>
+            
+            <div class="todo-container">
+                <div class="todo-input-section">
+                    <input type="text" id="todoInput" placeholder="할 일을 입력하세요..." class="todo-input">
+                    <button id="todoAddBtn" class="todo-add-btn">+ 추가</button>
+                </div>
+                
+                <ul id="todoList" class="todo-list"></ul>
+                
+                <div class="todo-stats">
+                    <span>전체: <span id="totalCount">0</span></span>
+                    <span>완료: <span id="completeCount">0</span></span>
+                </div>
+            </div>
+
+            <!-- 캘린더 섹션 -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="calendar-nav">◀</button>
+                    <h3 id="calendarTitle" class="calendar-title">2026년 1월</h3>
+                    <button id="nextMonth" class="calendar-nav">▶</button>
+                </div>
+                
+                <div class="calendar-weekdays">
+                    <div class="weekday">일</div>
+                    <div class="weekday">월</div>
+                    <div class="weekday">화</div>
+                    <div class="weekday">수</div>
+                    <div class="weekday">목</div>
+                    <div class="weekday">금</div>
+                    <div class="weekday">토</div>
+                </div>
+                
+                <div id="calendarDays" class="calendar-days"></div>
+            </div>
+
+            <!-- 일정 추가 모달 -->
+            <div id="scheduleModal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalDateTitle">일정 추가</h3>
+                        <button class="modal-close" onclick="closeScheduleModal()">×</button>
+                    </div>
+                    <form id="scheduleForm">
+                        <div class="form-group">
+                            <label for="scheduleContent">일정 내용</label>
+                            <input type="text" id="scheduleContent" placeholder="일정을 입력하세요..." required>
+                        </div>
+                        <button type="submit" class="btn-schedule-add">일정 추가</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 이번주 일정 섹션 -->
+            <div class="weekly-schedule-container">
+                <h3 class="weekly-schedule-title">📅 이번주 일정</h3>
+                <ul id="weeklyScheduleList" class="weekly-schedule-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
